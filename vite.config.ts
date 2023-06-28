@@ -23,9 +23,9 @@ export default defineConfig((configEnv) => ({
   build: {
     lib: {
       entry: resolve('src', 'components/index.ts'),
-      name: 'datepicker-custom-react3',
+      name: 'datepicker-custom-react',
       formats: ['es', 'umd'],
-      fileName: (format) => `datepicker-custom-react3.${format}.js`,
+      fileName: (format) => `datepicker-custom-react.${format}.js`,
     },
     rollupOptions: {
       external: [...Object.keys(packageJson.peerDependencies)],

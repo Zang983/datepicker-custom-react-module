@@ -4,6 +4,8 @@ import InputDate from './InputDate'
 import { useEffect, useReducer } from 'react'
 import reducer from './reducer'
 import { GlobalType, HeaderConfigType, CalendarConfigType, InputConfigType } from './types'
+import './style.css'
+
 
 interface Props {
     date: Date,
@@ -33,7 +35,7 @@ export function Datepicker({ date, setChoice, userGlobalConfig, userHeaderConfig
         globalContainerClassName: "datepicker",
         datepickerLang: "FR",
         iconCalendarClassName: "iconCalendar",
-        iconCalendar: <button>Toggle Datepicker</button>,
+        iconCalendar: <button>Toggle</button>,
         iconCalendarHidden: false,
         inputAndIconContainerClassName: "inputContainer"
     }

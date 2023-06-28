@@ -1,0 +1,58 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+.datepicker {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    row-gap: 5px;
+  }
+  .datepicker button{
+    height:25px;
+  }
+  .inputContainer{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .inputContainer input{
+    width:90px;
+  }
+  .inputContainer button{
+    width:80px;
+  }
+  .datepickerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .datepickerHeader button {
+    width:70px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
+   .calendar{
+    border:1px solid black
+   }
+
+   .calendar td{
+    border:1px solid black;
+    text-align: center;
+   }
+   .calendar thead td{
+    border:none
+   }
+   .calendar tbody td:hover,.currentDay{
+    background-color: aquamarine;
+    cursor: pointer;
+   }
+   
+  .previousMonth{
+    color:red;
+  }
+  .nextMonth{
+    color:red;
+  }

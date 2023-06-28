@@ -1,11 +1,12 @@
 {
-  "name": "datepicker-custom-react3",
+  "name": "datepicker-custom-react",
   "private": false,
-  "version": "1.1.4",
+  "version": "1.0.0",
   "type": "module",
   "description": "Customizable datepicker for react",
   "license": "MIT",
   "author": "Zang983",
+  "keywords": ["Datepicker","Customizable"],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -17,13 +18,13 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/datepicker-custom-react3.es.js",
-      "require": "./dist/datepicker-custom-react3.js"
+      "import": "./dist/datepicker-custom-react.es.js",
+      "require": "./dist/datepicker-custom-react.js"
     },
     "./dist/style.css": "./dist/style.css"
   },
-  "main": "./dist/datepicker-custom-react3.js",
-  "module": "./dist/datepicker-custom-react3.es.js",
+  "main": "./dist/datepicker-custom-react.js",
+  "module": "./dist/datepicker-custom-react.es.js",
   "types": "./dist/index.d.ts",
   "devDependencies": {
     "@types/react": "^18.0.37",
