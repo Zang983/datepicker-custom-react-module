@@ -1,5 +1,4 @@
 import { resolve } from 'node:path'
-
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
@@ -17,7 +16,7 @@ export default defineConfig((configEnv) => ({
       linters: [new EsLinter({ configEnv })],
     }),
     dts({
-      include: ['src/component/'],
+      include: ['src/components/'],
     }),
   ],
   build: {
@@ -25,7 +24,7 @@ export default defineConfig((configEnv) => ({
       entry: resolve('src', 'components/index.ts'),
       name: 'datepicker-custom-react',
       formats: ['es', 'umd'],
-      fileName: (format) => `datepicker-custom-react.${format}.js`,
+      fileName: (format) => `datepicker-custom-react.${format}.ts`,
     },
     rollupOptions: {
       external: [...Object.keys(packageJson.peerDependencies)],

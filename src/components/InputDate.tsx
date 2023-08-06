@@ -13,30 +13,41 @@ interface Props {
     }>,
     globalConfig: GlobalType,
     inputDateConfig: InputConfigType
-
 }
 
 function InputDate({ state, dispatch, globalConfig, inputDateConfig }: Props) {
     const [date, setDate] = useState(state.selectedDate.toLocaleDateString())
     const [isValid, setIsValid] = useState(true)
 
+    function checkInput(input?: string) {
+        let regex = null
+        const value = input ? input : state.selectedDate.toLocaleDateString("fr-FR")
+        if (inputDateConfig.customRegex !== undefined)
+            regex = inputDateConfig.customRegex
+        else
+            regex = globalConfig.datepickerLang === "FR" ? inputDateConfig.regexDateFR : inputDateConfig.regexDateUS
+        if (regex && regex.test(value)) {
+            setIsValid(true)
+            return true
+        }
+        else {
+            setIsValid(false)
+            return false
+        }
+    }
     const openCalendar = () => {
-        if (inputDateConfig.openCalendar === true && !state.calendarStatus){
-            dispatch({ type: "openCalendar" })}
+        if (inputDateConfig.openCalendar === true && !state.calendarStatus) {
+            dispatch({ type: "openCalendar" })
+        }
     }
     const handleChangeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = ""
         if (e.target && e.target.value)
             value = e.target.value
         setDate(value)
-        let regex = null
-
-        if (inputDateConfig.customRegex != undefined)
-            regex = inputDateConfig.customRegex
-        else
-            regex = globalConfig.datepickerLang === "FR" ? inputDateConfig.regexDateFR : inputDateConfig.regexDateUS
-
-        if (regex && regex.test(value) && inputDateConfig.characterSplitDate) {
+        checkInput()
+        dispatch({ type: "closeCalendar" })
+        if (checkInput(value) && inputDateConfig.characterSplitDate) {
             const data = value.split(inputDateConfig.characterSplitDate)
             if (data && globalConfig.datepickerLang === "FR") {
                 dispatch({
@@ -56,10 +67,7 @@ function InputDate({ state, dispatch, globalConfig, inputDateConfig }: Props) {
                     }
                 })
             }
-            setIsValid(true)
         }
-        else
-            setIsValid(false)
     }
     useEffect(() => {
         if (globalConfig.datepickerLang === "FR")
@@ -70,9 +78,11 @@ function InputDate({ state, dispatch, globalConfig, inputDateConfig }: Props) {
 
     return (
         <>
-            <input className={inputDateConfig.inputClassName} type="text" value={date} onFocus={() => {
-                openCalendar()
-            }} onChange={e => handleChangeDate(e)} />
+            <label>{inputDateConfig.labelText}
+                <input className={inputDateConfig.inputClassName} type="text" value={date}
+                    onFocus={() => { openCalendar() }}
+                    onChange={e => handleChangeDate(e)} />
+            </label>
             {!isValid && <p className={inputDateConfig.errorFormatContainerClass}>{inputDateConfig.errorFormatMessage}</p>}
 
         </>

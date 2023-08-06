@@ -7,6 +7,7 @@ const updateSelectedDate = (state: State, newDate: Date, year: number, month: nu
   selectedDayIndex: newDate.getDay(),
   selectedMonth: month,
   selectedYear: year,
+  calendarStatus:false,
 });
 
 const updatePreSelectedDate = (state: State, newDate: Date, year: number, month: number, day: number) => ({
@@ -77,8 +78,8 @@ function reducer(state: State, action: Action) {
         const newDate = new Date(year, month - 1, day);
         return {
           ...state,
-          ...updateSelectedDate(state, newDate, year, month - 1, day),
           ...updatePreSelectedDate(state, newDate, year, month - 1, day),
+          ...updateSelectedDate(state, newDate, year, month - 1, day),
         };
       }
       return {
@@ -112,8 +113,15 @@ function reducer(state: State, action: Action) {
         preSelectedDay: state.selectedDay,
       }
     }
+    case "closeCalendar": {
+      return {
+        ...state,
+        calendarStatus: false,
+      }
+    }
     default:
       return {...state};
   }
+  
 }
 export default reducer;

@@ -64,6 +64,8 @@ export interface InputConfigType {
     regexDateUS?: RegExp,
     customRegex?:RegExp,
     characterSplitDate?: string,
-    openCalendar ?: boolean
+    openCalendar ?: boolean,
+    labelText?:string,
+
 }
 

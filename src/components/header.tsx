@@ -37,14 +37,15 @@ function Header({ state, dispatch, headerConfig, globalConfig }: Props) {
         }
         return years
     }
-    const changeMonth = (direction: number) => {
+    const changeMonth = (direction: number,e:React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
         dispatch({ type: "changeMonth", payload: { direction: direction } })
     }
     return (
         <div className={headerConfig.headerClassName}>
-            <button className={headerConfig.headerPreviousButtonClassName} onClick={() => changeMonth(-1)}>{headerConfig.headerPreviousButtonText}</button>
+            <button className={headerConfig.headerPreviousButtonClassName} onClick={(e) => changeMonth(-1,e)}>{headerConfig.headerPreviousButtonText}</button>
             <p>{convertMonth()}</p>
-            <button className={headerConfig.headerNextButtonClassName} onClick={() => changeMonth(1)} >{headerConfig.headerNextButtonText}</button>
+            <button className={headerConfig.headerNextButtonClassName} onClick={(e) => changeMonth(1,e)} >{headerConfig.headerNextButtonText}</button>
             {!headerConfig.resetButtonHidden && <button className={headerConfig.resetButtonClassName} onClick={() => dispatch({ type: "reset" })}>{headerConfig.resetButtonText}</button>}
             {
                 !headerConfig.selectYearHidden &&
