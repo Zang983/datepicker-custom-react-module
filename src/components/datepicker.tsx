@@ -1,3 +1,7 @@
+/*
+This component is the main component. It can receive various props as parameters (see the documentation).
+It simply displays the different elements of the datepicker and is updated via a useEffect whenever the state changes.
+*/
 import Calendar from './calendar'
 import Header from './header'
 import InputDate from './InputDate'

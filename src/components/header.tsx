@@ -1,3 +1,8 @@
+/*
+This component is responsible for managing the "header" menu of the calendar. It handles the previous, next, and reset buttons.
+It converts the names of the months according to the language of the calendar.
+Additionally, there is a function that calculates the number of preceding and succeeding years in the dropdown select.
+*/
 import { StateType as State } from "./types"
 import { GlobalType as Global, HeaderConfigType as HeaderConfig } from "./types"
 interface Props {

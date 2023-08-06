@@ -1,3 +1,19 @@
+/*
+This component allows creating the calendar.
+The latter is composed of different functions:
+
+isLeap: checks if the pre-selected year is a leap year or not.
+firstDayMonthIndex: retrieves the index of the first day of the month.
+addInArray: adds each day, represented by an object including:
+the day's class
+its number
+the month of the day
+calcDaysMissingBefore: calculates the number of days before the current month.
+calcDaysArray: calculates the different days as well as their styles.
+changeDay: modifies the state by setting the date selected by the user.
+displayWeek: breaks down the calendar's 42-cell table into complete weeks and returns a complete week in a <tr> element.
+theadContent: manages the calendar header.
+*/
 
 import { useState, useEffect } from 'react'
 import { StateType as State, CalendarConfigType, GlobalType } from './types';
@@ -32,7 +48,7 @@ function Calendar({ state, dispatch, calendarConfig, globalConfig }: Props) {
         tempDate.setDate(1)
         return tempDate.getDay()
     }
-    const addInArray = (array: DayObject[], classValue: string|undefined, dayValue: number, monthValue: number) => {
+    const addInArray = (array: DayObject[], classValue: string | undefined, dayValue: number, monthValue: number) => {
         const newObject: DayObject = {
             day: dayValue,
             month: monthValue,
@@ -49,7 +65,7 @@ function Calendar({ state, dispatch, calendarConfig, globalConfig }: Props) {
             case ("FR"):
                 return firstDay === 0 ? 6 : firstDay - 1
             default:
-                return firstDay 
+                return firstDay
         }
     }
     const calcDaysArray = () => {
@@ -59,7 +75,7 @@ function Calendar({ state, dispatch, calendarConfig, globalConfig }: Props) {
         isLeap() ? daysMonth[1] = 29 : null
         const previousMonth = month === 0 ? daysMonth[11] : daysMonth[month - 1]
         const dayMissingBefore = calcDaysMissingBefore()
-        
+
         //days before first day of selected mounth
         if (dayMissingBefore) {
             for (let i = previousMonth - dayMissingBefore + 1; i < previousMonth + 1; i++) {
