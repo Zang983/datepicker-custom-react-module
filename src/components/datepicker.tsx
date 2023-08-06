@@ -13,7 +13,7 @@ interface Props {
     userCalendarConfig?: CalendarConfigType,
     userInputConfig?: InputConfigType
 }
-export function Datepicker({ date = new Date(), setChoice, userGlobalConfig, userHeaderConfig, userCalendarConfig, userInputConfig }: Props) {
+export function Datepicker({ date = new Date(), setChoice, userGlobalConfig={}, userHeaderConfig={}, userCalendarConfig={}, userInputConfig={} }: Props) {
     const [state, dispatch] = useReducer(reducer, {
         selectedDate: date,
         selectedYear: date.getFullYear(),
